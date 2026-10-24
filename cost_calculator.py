@@ -35,12 +35,13 @@ def get_yield_per_planted(item):
 	# Pumpkin: nxn mega pumpkin yields n³ (n<6) or n²×6 (n>=6)
 	# Yield per planted = n (n<6) or 6 (n>=6)
 	# 20% death rate reduces effective yield to 80% (multiply by 4/5)
+	# replanting multiple times means actually 50% yield in the limit since we require full pumpkin squares
 	if item == Items.Pumpkin:
 		if n < 6:
 			base_yield = n
 		else:
 			base_yield = 6
-		effective_yield = (base_yield * unlock_mult * 4) // 5
+		effective_yield = (base_yield * unlock_mult) // 2
 		if effective_yield < 1:
 			effective_yield = 1
 		return effective_yield

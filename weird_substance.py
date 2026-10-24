@@ -13,8 +13,11 @@ def plant_field(area, options=None):
 
 	def plant_in_checkerboard(dest):
 		movement.go_to(dest)
-		use_item(Items.Fertilizer)
 		if (dest[0] + dest[1]) % 2 == 0:
+			if num_items(Items.Weird_Substance) > 1:
+				use_item(Items.Weird_Substance)
+			elif num_items(Items.Fertilizer) > 1:
+				use_item(Items.Fertilizer)
 			crops.plant_crop(Entities.Tree)
 		else:
 			crops.plant_crop(secondary_entity)
